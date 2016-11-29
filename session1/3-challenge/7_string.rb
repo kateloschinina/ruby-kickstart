@@ -5,5 +5,11 @@
 # pirates_say_arrrrrrrrr("Pirates say arrrrrrrrr")        # => "arrrrrrrr"
 
 def pirates_say_arrrrrrrrr(string)
-
+  result = ""
+  (string.size-1).times do |i|
+    if (string[i] == "r")or(string[i] == "R")
+      result += string[i+1]
+    end
+  end
+  return result
 end
