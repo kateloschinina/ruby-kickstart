@@ -8,4 +8,11 @@
 # ten_twenty(6) # => 10
 
 def ten_twenty(n)
+  if n.even?
+    return 10
+  elsif n.odd?
+    return 20
+  else
+    return "You provided not a number, therefore it is none"
+  end
 end
