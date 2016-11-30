@@ -1,5 +1,5 @@
 # Write a method named prime_chars? which takes array of strings
-# and returns true if the sum of the characters is prime.
+# and returns true if the sum of the number of characters is prime.
 #
 # Remember that a number is prime if the only integers that can divide it with no remainder are 1 and itself.
 #
@@ -15,3 +15,7 @@
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
 
+def prime_chars? (array_of_strings)
+  sum = array_of_strings.join.length
+  (sum!=0)&&(sum!=1)&&(2..sum/2).none?{|i| sum % i == 0}
+end
