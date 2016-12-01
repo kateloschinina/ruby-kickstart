@@ -144,5 +144,4 @@ class BeerSong
 #      puts "Go to the store and buy some more, "+englishNumber(number)+" bottles of beer on the wall."
     end
   end
-
 end
