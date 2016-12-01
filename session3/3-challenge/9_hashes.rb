@@ -3,7 +3,8 @@
 #
 # This is the same as [1,2,3] & [1,2,4]
 # but we don't want to use the builtin method
-# instead, implement your own by creating a hash table of elements from the first set
+# instead, implement your own by creating a hash table of elements
+#from the first set
 # and checking it against the elements from the second set
 #
 # the keys will be the elements in the arrays
@@ -12,10 +13,12 @@
 # if an index is not true, it should be nil
 #
 # return the hash, and the array of elements in both sets (it should be sorted)
-# (do not worry about the order of the hash, remember, on 1.8, hashes have no ordering)
+# (do not worry about the order of the hash, remember, on 1.8, hashes have no
+#  ordering)
 #
 # hints:
-#   you can set up default behaviour for a hash by passing a block, see cheatsheet (essentially a lazy initialization)
+#   you can set up default behaviour for a hash by passing a block,
+#   see cheatsheet (essentially a lazy initialization)
 #   you can get an array of keys from a hash with the keys method
 #
 # examples:
@@ -28,4 +31,31 @@
 # shared [1,2,:c], ['a','b',:c]      # => [{1=>[true, nil], 2=>[true, nil], :c=>[true, true], "a"=>[nil, true], "b"=>[nil, true]}, [:c]]
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
+def shared (array1, array2)
+  hash = Hash.new
+  array1.each {|x| hash[x] = [true, nil]}
+  array2.each do |x|
+    if hash[x] == nil
+      hash[x] = [nil,true]
+    else
+      hash[x] = [true,true]
+    end
+  end
+  array = Array.new
+  hash.each do |key, arr|
+    if arr == [true,true]
+      array << key
+    end
+  end
+  [hash,array]
+end
 
+=begin
+puts "#{shared [1,2,3], [1,2,4]}"            # => [{1=>[true, true], 2=>[true, true], 3=>[true, nil], 4=>[nil, true]}, [1, 2]]
+puts "#{shared %w(a b c d), %w(aa b cc d)}"  # => [{"a"=>[true, nil], "b"=>[true, true], "c"=>[true, nil], "d"=>[true, true], "aa"=>[nil, true], "cc"=>[nil, true]}, ["b", "d"]]
+puts "#{shared [], [1,2]}"                   # => [{1=>[nil, true], 2=>[nil, true]}, []]
+puts "#{shared [1,2], []}"                   # => [{1=>[true, nil], 2=>[true, nil]}, []]
+puts "#{shared [], []}"                      # => [{}, []]
+puts "#{shared [1,2,:c], ['a','b',:c]}"      # => [{1=>[true, nil], 2=>[true, nil], :c=>[true, true], "a"=>[nil, true], "b"=>[nil, true]}, [:c]]
+puts "#{shared [1,2,3], [3,2,1]}"            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
+=end
