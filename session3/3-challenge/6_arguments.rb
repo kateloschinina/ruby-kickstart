@@ -19,3 +19,30 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker (factor, *parameters)
+  result = Array.new
+  #puts "#{parameters}"
+  parameters.each_slice 2 do |p1,p2|
+    #puts "P1 and P2: #{p1} and #{p2},  factor #{factor}"
+    p1 = !!p1
+    p2 = !!p2
+    if factor
+      result << (p1 != p2)
+    else
+      result << (p1 == p2)
+    end
+  end
+  result
+end
+
+=begin
+puts "#{match_maker false, true,  true}"                # => [true]
+puts "#{match_maker true,  true,  true}"                # => [false]
+puts "#{match_maker true,  false, false}"               # => [false]
+puts "#{match_maker true,  false, true}"                # => [true]
+puts "#{match_maker true,  true,  false}"               # => [true]
+puts "#{match_maker true,  true,  true, false, true}"   # => [false, true]
+puts "#{match_maker true,  true,  true, false, nil}"    # => [false, false]
+puts "#{match_maker true,  true,  true, true, nil}"     # => [false, true]
+puts "#{match_maker true,  true,  true, 0, nil}"        # => [false, true]
+=end
