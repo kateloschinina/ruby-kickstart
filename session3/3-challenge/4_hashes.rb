@@ -6,3 +6,10 @@
 #
 # first_pos "The dog and the cat and the cow" # => {"The" => 0, "dog" => 1, "and" => 2, "the" => 3, "cat" => 4, "cow" => 7}
 
+def first_pos(pos_str)
+  pos_hash = Hash.new
+  pos_str.split.each_with_index{ |word,index| pos_hash[word] ||= index }
+  pos_hash
+end
+
+# puts first_pos "The dog and the cat and the cow"
