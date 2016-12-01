@@ -14,7 +14,7 @@ def staircase(n)
   stair_hash = Hash.new
 
   for i in 1..n
-    puts "i = #{i}"
+    #puts "i = #{i}"
     if i.odd?
       stair_array = Array.new
       for j in 1..i
