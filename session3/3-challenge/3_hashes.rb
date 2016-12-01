@@ -11,7 +11,6 @@ def word_count(input_string)
   str_hash = Hash.new 0
   input_string.split.each { |word| str_hash[word.downcase] += 1}
   str_hash
-
 end
 
 #puts word_count "The dog and the cat"
