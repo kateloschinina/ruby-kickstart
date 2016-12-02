@@ -10,5 +10,10 @@
 # print_list_in_reverse head   # >> "1\n2\n"
 
 def print_list_in_reverse list
-  
+  array = Array.new
+  while list
+    array << list[:data]
+    list = list[:next]
+  end
+  array.reverse.each {|d| puts d}
 end
